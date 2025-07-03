@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>김진아의 작품들</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #14032e 0%, #401861 50%, #712f86 100%);
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #f0eaff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: radial-gradient(#ffffff 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.07;
+      z-index: 0;
+      animation: sparkle 10s linear infinite;
+    }
+
+    @keyframes sparkle {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    h1 {
+      margin: 60px 0 20px;
+      font-size: 2rem;
+      background: rgba(60, 0, 90, 0.5);
+      padding: 10px 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      z-index: 1;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      z-index: 1;
+    }
+
+    .lang-toggle button {
+      padding: 8px 16px;
+      background-color: #ffffff22;
+      color: #f0eaff;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .lang-toggle button:hover {
+      background-color: #ffffff44;
+      transform: scale(1.05);
+    }
+
+    .works {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      width: 90%;
+      margin-bottom: 60px;
+      z-index: 1;
+    }
+
+    .work-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(200, 160, 255, 0.1);
+    }
+
+    .work-card video,
+    .work-card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .work-card p {
+      font-size: 1rem;
+      margin: 0;
+      color: #f0eaff;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 60px;
+      padding: 12px 24px;
+      background-color: #ffffff22;
+      color: #f0eaff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 1;
+    }
+
+    .back:hover {
+      background-color: #ffffff33;
+      transform: scale(1.05);
+    }
+
+    .cursor-star {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background-color: #ffe855;
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+        50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+      );
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s ease;
+      z-index: 9999;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+      display: block;
+      margin: 5% auto;
+      max-width: 90%;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10001;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="trans" data-ko="🌌 김진아의 작품들" data-en="🌌 Jina's Works">🌌 김진아의 작품들</h1>
+
+  <div class="lang-toggle">
+    <button onclick="switchLanguage('ko')">🇰🇷 한국어</button>
+    <button onclick="switchLanguage('en')">🇺🇸 English</button>
+  </div>
+
+  <div class="works">
+    <div class="work-card">
+      <video src="car.mp4" controls aria-label="언리얼 엔진 릴 영상"></video>
+      <p class="trans" data-ko="언리얼 엔진 릴" data-en="Unreal Engine Reel">언리얼 엔진 릴</p>
+    </div>
+
+    <div class="work-card">
+      <video src="Fox.mp4" controls aria-label="언리얼 엔진 릴 영상 2"></video>
+      <p class="trans" data-ko="언리얼 엔진 릴 2" data-en="Unreal Engine Reel 2">언리얼 엔진 릴</p>
+    </div>
+
+    <div class="work-card">
+      <video src="Tornado.mp4" controls aria-label="언리얼 엔진 나이아가라 데모 영상"></video>
+      <p class="trans" data-ko="언리얼 엔진 나이아가라" data-en="Unreal Engine Niagara Demo">언리얼 엔진 나이아가라</p>
+    </div>
+
+    <div class="work-card">
+      <video src="snow,rain.mp4" controls aria-label="언리얼 엔진 나이아가라 데모 영상 2"></video>
+      <p class="trans" data-ko="언리얼 엔진 나이아가라 2" data-en="Unreal Engine Niagara Demo 2">언리얼 엔진 나이아가라</p>
+    </div>
+
+    <div class="work-card">
+      <img src="grass.png" alt="언리얼 풍경 텍스처 샘플 이미지" onclick="openModal(this.src)">
+      <p class="trans" data-ko="언리얼 엔진 자연 풍경" data-en="Unreal Engine Landscape">언리얼 엔진 자연 풍경</p>
+    </div>
+  </div>
+
+  <a class="back" href="index.html" class="trans" data-ko="← 메인으로 돌아가기" data-en="← Back to Main">← 메인으로 돌아가기</a>
+
+  <div class="cursor-star"></div>
+
+  <!-- 이미지 확대 모달 -->
+  <div id="imgModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <script>
+    const cursorStar = document.querySelector('.cursor-star');
+    window.addEventListener('mousemove', e => {
+      cursorStar.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    function openModal(src) {
+      document.getElementById("imgModal").style.display = "block";
+      document.getElementById("modalImg").src = src;
+    }
+
+    function closeModal() {
+      document.getElementById("imgModal").style.display = "none";
+    }
+
+    function switchLanguage(lang) {
+      document.querySelectorAll('.trans').forEach(el => {
+        el.textContent = el.dataset[lang];
+      });
+    }
+  </script>
+</body>
+</html>
